@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, TouchableWithoutFeedback, Image, Text, Button,TouchableHighlight} from 'react-native';
+import {View, TouchableWithoutFeedback, Image, Text, Button,TouchableHighlight, TouachableNativeFeedback } from 'react-native';
 
 import {Container, Icon, Fab, Toast} from 'native-base';
 import appColors from '../styles/colors';
@@ -17,7 +17,7 @@ import {setToast} from '../states/toast';
 
 import AgeGenderWeightTextInput from './AgeGenderWeightTextInput';
 
-class TodayScreen extends React.Component {
+class SettingScreen2 extends React.Component {
     static propTypes = {
         creatingPost: PropTypes.bool.isRequired,
         creatingVote: PropTypes.bool.isRequired,
@@ -56,46 +56,21 @@ class TodayScreen extends React.Component {
             <View style={styles.inputcontainer}>
                 <View style={styles.title_container}>
                     <Text style = {styles.title}>The</Text>
-                    <Text style = {styles.title}>SugerFree</Text>
+                    <Text style = {styles.title}>SugarFree</Text>
                     <Text style = {styles.title}>Project</Text>
                 </View>
-                    
-                    
-                    <AgeGenderWeightTextInput
-                        multiline = {true}
-                        numberOfLines = {4}
-                        onChangeText={(text) => this.setState({text})}
-                        //value={this.state.text}
-                        style={styles.input1}
-                        placeholder={"Your age?"}
-                        placeholderTextColor={'rgb(100, 204, 203)'} 
-                    />
                 
-                    <AgeGenderWeightTextInput
-                        multiline = {true}
-                        numberOfLines = {4}
-                        onChangeText={(text) => this.setState({text})}
-                        //value={this.state.text}
-                        style={styles.input1}
-                        placeholder={"Your gender?"}
-                        placeholderTextColor={'rgb(100, 204, 203)'} 
-                    />
-                
-                    <AgeGenderWeightTextInput
-                        multiline = {true}
-                        numberOfLines = {4}
-                        onChangeText={(text) => this.setState({text})}
-                        //value={this.state.text}
-                        style={styles.input1}
-                        placeholder={"Your weight?"}
-                        placeholderTextColor={'rgb(100, 204, 203)'} 
-                    />
+                <View style={styles.recommended_intake_container}>
+                    <Text style = {styles.recommended_intake}>Your daily recommended</Text>
+                    <Text style = {styles.recommended_intake}>sugar intake is 50 g</Text>
+                </View>
+                    
 
-                    <TouchableWithoutFeedback onPress={this.handleSubmitForm}>
-                        <View style={styles.submitButton}>
-                            <Text style={styles.submitButtonText}>Go!</Text>
-                        </View>
-                    </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback  onPress={this.handleSubmitForm}>
+                    <View style={styles.submitButton}>
+                        <Text style={styles.submitButtonText}>Go!</Text>
+                    </View>
+                </TouchableWithoutFeedback >
             </View>
         );
     }
@@ -112,7 +87,7 @@ class TodayScreen extends React.Component {
 
     handleSubmitForm(){
         this.setState({testString: 'test_successfully'});
-        this.props.navigation.navigate('SettingScreen2');
+        this.props.navigation.navigate('Main');
     }
 }
 
@@ -178,6 +153,16 @@ const styles = {
         color: 'white',
         textAlign:'center',
         fontWeight: "500"
+    },
+    recommended_intake_container:{
+        marginBottom: 40
+    },
+    recommended_intake:{
+        fontSize: 20,
+        textAlign:'center',
+        fontWeight: "300",
+        color: 'black',
+        width: 225
     }
 };
 
@@ -185,4 +170,4 @@ export default connect((state, ownProps) => ({
     creatingPost: state.post.creatingPost,
     creatingVote: state.post.creatingVote,
     toast: state.toast
-}))(TodayScreen);
+}))(SettingScreen2);

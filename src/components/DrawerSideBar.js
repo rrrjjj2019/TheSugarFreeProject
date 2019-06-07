@@ -17,23 +17,31 @@ export default class DrawerSideBar extends React.Component {
             <ImageBackground source={require('../images/account-bg.jpg')} style={styles.header}>
                 <Thumbnail large source={require('../images/account.jpg')} />
             </ImageBackground>
-            <Button block transparent style={styles.item} onPress={() => navigate('Today')}>
-                <Icon name='rocket' type='FontAwesome' style={styles.icon} />
+            <Button block transparent style={styles.item} onPress={() => navigate('')}>
+                <Icon name='calendar-today' type='MaterialCommunityIcons' style={styles.icon} />
                 <Text style={styles.text}>Today</Text>
                 <Badge primary style={styles.badge}>
-                    <NbText style={styles.badgeText}>2</NbText>
+                    <NbText style={styles.badgeText}>20</NbText>
                 </Badge>
             </Button>
-            <Button block transparent style={styles.item} onPress={() => navigate('Forecast')}>
-                <Icon name='tags' type='FontAwesome' style={styles.icon} />
-                <Text style={styles.text}>Forecast</Text>
+            <Button block transparent style={styles.item} onPress={() => navigate('MyRecordScreen')}>
+                <Icon name='line-graph' type='Entypo' style={styles.icon} />
+                <Text style={styles.text}>My Records</Text>
             </Button>
-            <Button block transparent style={styles.item}>
-                <Icon name='settings' style={styles.icon}
-                    onPress={() => {}} // TODO
-                />
-                <Text style={styles.text}>Settings</Text>
+            <Button block transparent style={styles.item} onPress={() => navigate('RecentDrinks')}>
+                <Icon name='list-ol' type='FontAwesome5' style={styles.icon} />
+                <Text style={styles.text}>Recent Drinks</Text>
             </Button>
+            <Button block transparent style={styles.item} onPress={() => navigate('SetGoalScreen')}>
+                <Icon name='settings-outline' type='MaterialCommunityIcons' style={styles.icon} />
+                <Text style={styles.text}>Set My Goal</Text>
+            </Button>
+            <Button block transparent style={styles.item} onPress={() => navigate('Tips')}>
+                <Icon name='newspaper-o' type='FontAwesome' style={styles.icon} />
+                <Text style={styles.text}>Tips from doctors</Text>
+            </Button>
+
+
         </Container>
     );
     }

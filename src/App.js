@@ -18,11 +18,24 @@ import {createReactNavigationReduxMiddleware, createReduxContainer, createNaviga
 import TodayScreen from './components/TodayScreen';
 import PostFormScreen from './components/PostFormScreen';
 import ForecastScreen from './components/ForecastScreen';
+import SettingScreen2 from './components/SettingScreen2';
+import MyRecordScreen from './components/MyRecordScreen';
+import SetGoalScreen from './components/SetGoalScreen';
+
+import MainScreen from './components/MainScreen';
+import RecentDrinksScreen from './components/RecentDrinksScreen';
+import TipsScreen from './components/TipsScreen';
 
 const AppNavigator = createStackNavigator({
     Today: {screen: TodayScreen},
     Forecast: {screen: ForecastScreen},
-    PostForm: {screen: PostFormScreen}
+    PostForm: {screen: PostFormScreen},
+    SettingScreen2:{screen: SettingScreen2},
+    MyRecordScreen:{screen: MyRecordScreen},
+    SetGoalScreen:{screen: SetGoalScreen},
+    Main:{screen: MainScreen},
+    RecentDrinks: {screen: RecentDrinksScreen},
+    Tips: {screen: TipsScreen},
 }, {
     headerMode: 'none'
 });

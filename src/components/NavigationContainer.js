@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {StyleSheet, View, Image} from 'react-native';
 import {Container, Header, Button, Icon, Left, Right, Body, Title, Drawer} from 'native-base';
 import SearchButtonWithModal from './SearchButtonWithModal';
 import DrawerSideBar from './DrawerSideBar';
@@ -16,12 +17,14 @@ export default class NavigationContainer extends React.Component {
 
         this.openDrawer = this.openDrawer.bind(this);
         this.closeDrawer = this.closeDrawer.bind(this);
+        this.handleOpenAdd = this.handleOpenAdd.bind(this);
     }
 
     render() {
         const {title, navigate} = this.props;
         return (
             <Drawer
+
                 ref={(el) => this.drawer = el}
                 content={<DrawerSideBar navigate={navigate} />}
                 onClose={this.closeDrawer}
@@ -32,15 +35,23 @@ export default class NavigationContainer extends React.Component {
                     }
                 })}>
                 <Container>
-                    <Header>
+
+                    <Header transparent>
                         <Left><Button transparent onPress={this.openDrawer}>
-                            <Icon name='menu' />
+                            <Icon name='menu' style={styles.icon}/>
                         </Button></Left>
-                        <Body><Title>{title}</Title></Body>
-                        <Right><SearchButtonWithModal /></Right>
+                        <Body><Title style={styles.title}>{title}</Title></Body>
+                        <Right>
+                            <Button transparent  onPress={this.handleOpenAdd}>
+                                <Icon name='ios-add' type='Ionicons' style={styles.icon} />
+                            </Button>
+                        </Right>
                     </Header>
-                    {this.props.children}
+                    
+
+
                 </Container>
+                {this.props.children}
             </Drawer>
         );
     }
@@ -52,4 +63,18 @@ export default class NavigationContainer extends React.Component {
     closeDrawer() {
         this.drawer._root.close();
     }
+    handleOpenAdd(){
+        this.props.navigate('PostForm');
+    }
 }
+
+const styles = StyleSheet.create({
+    title: {
+        color:'black'
+    },
+
+    icon: {
+        color: 'black'
+    }
+
+});

@@ -4,7 +4,6 @@ import {
   View
 } from 'react-native';
 
-
 import {connect} from 'react-redux';
 import {createPost, input, inputDanger} from '../states/post-actions';
 import {setToast} from '../states/toast';
@@ -16,7 +15,7 @@ import {getMoodIcon} from '../utilities/weather';
 class PostFormScreen extends React.Component {
     static propTypes = {
         navigation: PropTypes.object.isRequired,
-
+        mood: PropTypes.string.isRequired,
         inputValue: PropTypes.string.isRequired,
         inputDanger: PropTypes.bool.isRequired
     };
@@ -30,7 +29,7 @@ class PostFormScreen extends React.Component {
     }
 
     render() {
-        const {inputValue, inputDanger} = this.props;
+        const {mood, inputValue, inputDanger} = this.props;
         return (
             <Container>
                 <Header>
@@ -44,8 +43,11 @@ class PostFormScreen extends React.Component {
                     </Button></Right>
                 </Header>
                 <Content style={styles.content}>
-
-
+                    {getMoodIcon({
+                        group: mood,
+                        size: 120,
+                        style: styles.mood
+                    })}
                     <Item regular error={inputDanger} style={styles.item}>
                         {/* <Label>What's on your mind?</Label> */}
                         <Input autoFocus multiline maxLength={1024} placeholder="What's on your mind?"
@@ -87,7 +89,12 @@ const styles = {
     content: {
         backgroundColor: appColors.primaryLight
     },
-
+    mood: {
+        color: appColors.primaryLightText,
+        textAlign: 'center',
+        marginTop: 32,
+        marginBottom: 32,
+    },
     item: {
         marginLeft: 16,
         marginRight: 16,
