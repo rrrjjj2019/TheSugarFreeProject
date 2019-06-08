@@ -115,6 +115,13 @@ export function inputWeight(weight) {
     };
 };
 
+export function inputName(name) {
+    return {
+        type: '@USER_FORM/INPUT_NAME',
+        name
+    };
+};
+
 export function sugarGoal(age, weight) {
     return {
         type: '@USER_FORM/SUGAR_GOAL',

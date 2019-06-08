@@ -6,7 +6,7 @@ const initPostState = {
     posts: [],
     hasMore: true,
     creatingPost: false,
-    creatingVote: false
+    //creatingVote: false
 };
 export function post(state = initPostState, action) {
     switch (action.type) {
@@ -59,7 +59,7 @@ export function post(state = initPostState, action) {
                 creatingPost: false,
                 posts: newPosts
             };
-        case '@POST/START_CREATE_VOTE':
+        /*case '@POST/START_CREATE_VOTE':
             return {
                 ...state,
                 creatingVote: true
@@ -79,7 +79,7 @@ export function post(state = initPostState, action) {
                 ...state,
                 creatingVote: false,
                 posts: newPosts
-            };
+            };*/
         default:
             return state;
     }
@@ -88,14 +88,18 @@ export function post(state = initPostState, action) {
 /* Post Form */
 
 const initPostFormState = {
-    inputValue: '',
+    /*inputValue: '',
     inputDanger: false,
-    mood: 'na'
+    mood: 'na'*/
+    inputDrink: '',
+    inputSugar: '',
+    inputDangerDrink: false,
+    inputDangerSugar: false
 };
 
 export function postForm(state = initPostFormState, action) {
     switch (action.type) {
-        case '@POST_FORM/INPUT':
+        /*case '@POST_FORM/INPUT':
             return {
                 ...state,
                 inputValue: action.value
@@ -109,6 +113,27 @@ export function postForm(state = initPostFormState, action) {
             return {
                 ...state,
                 mood: action.mood
+            };
+        */
+       case '@POST_FORM/INPUT_DRINK':
+            return {
+                ...state,
+                inputDrink: action.value
+            };
+        case '@POST_FORM/INPUT_SUGAR':
+            return {
+                ...state,
+                inputSugar: action.value
+            };
+        case '@POST_FORM/INPUT_DANGER_DRINK':
+            return {
+                ...state,
+                inputDangerDrink: action.danger
+            };
+        case '@POST_FORM/INPUT_DANGER_SUGAR':
+            return {
+                ...state,
+                inputDangerSugar: action.danger
             };
         default:
             return state;

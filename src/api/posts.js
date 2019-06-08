@@ -9,7 +9,7 @@
 //const postBaseUrl = 'http://weathermood-cloudprog-env2.mefye6uxcy.us-east-1.elasticbeanstalk.com/api';
 const postBaseUrl = 'http://finalProj-server-dev.us-west-2.elasticbeanstalk.com/api';
 
-export function listPosts(searchText = '', start) {
+/*export function listPosts(searchText = '', start) {
     let url = `${postBaseUrl}/posts`;
     let query = [];
     if (searchText)
@@ -31,8 +31,34 @@ export function listPosts(searchText = '', start) {
 
         return res.json();
     });
-}
+}*/
+export function listPosts(userId = '', start) {
+    let url = `${postBaseUrl}/posts`;
+    let query = [];
+    if (userId)
+        query.push(`userId=${userId}`);
+    if (start)
+        query.push(`start=${start}`);
+    if (query.length)
+        url += '?' + query.join('&');
 
+    console.log(`Making GET request to: ${url}`);
+
+    return fetch(url, {
+        headers: {
+            'Accept': 'application/json'
+        }/*,
+        body: JSON.stringify({
+            userId
+        })*/
+    }).then(res => {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response code: ${res.status}`);
+
+        return res.json();
+    });
+}
+/*
 export function createPost(mood, text) {
     let url = `${postBaseUrl}/posts`;
 
@@ -54,8 +80,30 @@ export function createPost(mood, text) {
 
         return res.json();
     });
-}
+}*/
+export function createPost(userId, drinkName, sugar) {
+    let url = `${postBaseUrl}/posts/${userId}`;
 
+    console.log(`Making POST request to: ${url}`);
+
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            drinkName,
+            sugar
+        })
+    }).then(function(res) {
+        if (res.status !== 200)
+            throw new Error(`Unexpected response code: ${res.status}`);
+
+        return res.json();
+    });
+}
+/*
 export function createVote(id, mood) {
     let url = `${postBaseUrl}/posts/${id}/${mood.toLowerCase()}Votes`;
 
@@ -72,7 +120,7 @@ export function createVote(id, mood) {
 
         return res.json();
     });
-}
+}*/
 
 
 export function createUsers(age , weight , gender, sugar_should_intake) {

@@ -92,7 +92,8 @@ const initUserFormState = {
     age : -1,
     weight: -1,
     gender: '',
-    sugar_should_intake: -1
+    sugar_should_intake: -1,
+    name: ''
 };
 
 export function userForm(state = initUserFormState, action) {
@@ -106,6 +107,11 @@ export function userForm(state = initUserFormState, action) {
             return {
                 ...state,
                 weight: action.weight
+            };
+        case '@USER_FORM/INPUT_NAME':
+            return {
+                ...state,
+                name: action.name
             };
         case '@USER_FORM/SUGAR_GOAL':
             return {

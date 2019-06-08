@@ -55,6 +55,7 @@ class PostList extends React.Component {
     }
 
     renderItem(p) {
+        
         return <PostItem {...p} />;
     }
 

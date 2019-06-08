@@ -12,10 +12,12 @@ import {connect} from 'react-redux';
 import {listPosts, listMorePosts} from '../states/post-actions';
 import {Container, Header, Left, Right, Button, Title, Icon, Body} from 'native-base';
 
-class PostList extends React.Component {
+
+class RecentDrinksScreen extends React.Component {
     static propTypes = {
 
-        searchText: PropTypes.string.isRequired,
+        //searchText: PropTypes.string.isRequired,
+        userId: PropTypes.string.isRequired,
         listingPosts: PropTypes.bool.isRequired,
         listingMorePosts: PropTypes.oneOfType([
             PropTypes.string,
@@ -43,13 +45,13 @@ class PostList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(listPosts(this.props.searchText));
+        this.props.dispatch(listPosts(this.props.userId));
     }
 
     componentWillReceiveProps(nextProps) {
-        const {searchText, dispatch, posts} = this.props;
-        if (searchText !== nextProps.searchText) {
-            dispatch(listPosts(nextProps.searchText));
+        const {userId, dispatch, posts} = this.props;
+        if (userId !== nextProps.userId) {
+            dispatch(listPosts(nextProps.userId));
         }
         if (posts !== nextProps.posts) {
             this.setState({
@@ -104,22 +106,25 @@ class PostList extends React.Component {
     }
 
     handleRefresh() {
-        const {dispatch, searchText} = this.props;
-        dispatch(listPosts(searchText));
+        const {dispatch, userId} = this.props;
+        console.log('#######################');
+        console.log(userId);
+        dispatch(listPosts(userId));
     }
 
     handleLoadMore() {
-        const {listingMorePosts, dispatch, posts, searchText} = this.props;
+        const {listingMorePosts, dispatch, posts, userId} = this.props;
         const start = posts[posts.length - 1].id;
         if (listingMorePosts !== start)
-            dispatch(listMorePosts(searchText, start));
+            dispatch(listMorePosts(userId, start));
     }
 }
 
 export default connect((state, ownProps) => ({
-    searchText: state.search.searchText,
+    //searchText: state.search.searchText,
     listingPosts: state.post.listingPosts,
     listingMorePosts: state.post.listingMorePosts,
     posts: state.post.posts,
-    hasMorePosts: state.post.hasMore
-}))(PostList);
+    hasMorePosts: state.post.hasMore,
+    userId: state.userForm.name
+}))(RecentDrinksScreen);

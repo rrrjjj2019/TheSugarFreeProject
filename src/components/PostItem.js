@@ -16,8 +16,9 @@ class PostItem extends React.Component {
     static propTypes = {
         id: PropTypes.number.isRequired,
 
-        text: PropTypes.string.isRequired,
-        dispatch: PropTypes.func.isRequired
+        //text: PropTypes.string.isRequired,
+        dispatch: PropTypes.func.isRequired,
+        posts: PropTypes.array.isRequired,
     };
 
     constructor(props) {
@@ -25,17 +26,17 @@ class PostItem extends React.Component {
     }
 
     render() {
-        const {id, mood, text, ts, clearVotes, cloudsVotes, drizzleVotes, rainVotes, thunderVotes, snowVotes, windyVotes, tooltipOpen} = this.props;
-
+        const {id/*, mood, text*/, ts/*, clearVotes, cloudsVotes, drizzleVotes, rainVotes, thunderVotes, snowVotes, windyVotes, tooltipOpen*/} = this.props;
+        console.log("In PostItem");
+        console.log(this.props);
         return (
             <ListItem style={StyleSheet.flatten(styles.listItem)}>
                 <View style={styles.post}>
-                    <View style={styles.mood}>
-
-                    </View>
+                    
                     <View style={styles.wrap}>
                         <Text style={styles.ts}>{moment(ts * 1000).calendar()}</Text>
-                        <Text style={styles.text}>{text}</Text>
+                        <Text style={styles.text}>{this.props.drinkName}</Text>
+                        <Text style={styles.text}>{this.props.sugar}</Text> 
                     </View>
                 </View>
             </ListItem>
@@ -84,5 +85,5 @@ const styles = StyleSheet.create({
 });
 
 export default connect((state, ownProps) => ({
-    
+    posts: state.post.posts
 }))(PostItem);

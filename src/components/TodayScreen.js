@@ -17,7 +17,7 @@ import {setToast} from '../states/toast';
 
 import AgeGenderWeightTextInput from './AgeGenderWeightTextInput';
 
-import {inputAge, inputWeight, inputGender, inputDanger, createUser, sugarGoal} from '../states/user-actions';
+import {inputAge, inputWeight, inputGender, inputDanger, createUser, sugarGoal, inputName} from '../states/user-actions';
 //import console = require('console');
 
 class TodayScreen extends React.Component {
@@ -46,6 +46,7 @@ class TodayScreen extends React.Component {
         this.handleInputChange_AGE = this.handleInputChange_AGE.bind(this);
         this.handleInputChange_WEIGHT = this.handleInputChange_WEIGHT.bind(this);
         this.handleInputChange_GENDER = this.handleInputChange_GENDER.bind(this);
+        this.handleInputChange_NAME = this.handleInputChange_NAME.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -102,6 +103,16 @@ class TodayScreen extends React.Component {
                         placeholderTextColor={'rgb(100, 204, 203)'} 
                     />
 
+                    <AgeGenderWeightTextInput
+                        multiline = {true}
+                        numberOfLines = {4}
+                        onChangeText={/*(text) => this.setState({text})*/this.handleInputChange_NAME}
+                        value={this.props.name}
+                        style={styles.input1}
+                        placeholder={"Your name?"}
+                        placeholderTextColor={'rgb(100, 204, 203)'} 
+                    />
+
                     <TouchableWithoutFeedback onPress={this.handleSubmitForm}>
                         <View style={styles.submitButton}>
                             <Text style={styles.submitButtonText}>Go!</Text>
@@ -149,6 +160,14 @@ class TodayScreen extends React.Component {
         const gender = e
         this.props.dispatch(inputGender(gender));
         if (gender && this.props.inputDanger) {
+            this.props.dispatch(inputDanger(false));
+        }
+    }
+
+    handleInputChange_NAME(e) {
+        const name = e
+        this.props.dispatch(inputName(name));
+        if (name && this.props.inputDanger) {
             this.props.dispatch(inputDanger(false));
         }
     }

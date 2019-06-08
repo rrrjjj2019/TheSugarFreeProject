@@ -45,7 +45,7 @@ function endCreatePost(post) {
         post
     };
 }
-
+/*
 function startCreateVote() {
     return {
         type: '@POST/START_CREATE_VOTE'
@@ -58,11 +58,11 @@ function endCreateVote(post) {
         post
     };
 }
-
-export function listPosts(searchText) {
+*/
+export function listPosts(/*searchText*/userId) {
     return (dispatch, getState) => {
         dispatch(startListPosts());
-        return listPostsFromApi(searchText).then(posts => {
+        return listPostsFromApi(/*searchText*/userId).then(posts => {
             dispatch(endListPosts(posts));
         }).catch(err => {
             dispatch(endListPosts());
@@ -71,10 +71,10 @@ export function listPosts(searchText) {
     };
 };
 
-export function listMorePosts(searchText, start) {
+export function listMorePosts(/*searchText*/userId, start) {
     return (dispatch, getState) => {
         dispatch(startListMorePosts(start));
-        return listPostsFromApi(searchText, start).then(posts => {
+        return listPostsFromApi(/*searchText*/userId, start).then(posts => {
             dispatch(endListMorePosts(posts));
         }).catch(err => {
             dispatch(endListMorePosts());
@@ -83,11 +83,11 @@ export function listMorePosts(searchText, start) {
     };
 };
 
-export function createPost(mood, text) {
+export function createPost(/*mood, text*/userId, drinkName, sugar) {
     return (dispatch, getState) => {
         dispatch(startCreatePost());
 
-        return createPostFromApi(mood, text).then(post => {
+        return createPostFromApi(/*mood, text*/userId, drinkName, sugar).then(post => {
             dispatch(endCreatePost(post));
         }).catch(err => {
             dispatch(endCreatePost())
@@ -95,7 +95,7 @@ export function createPost(mood, text) {
         });
     };
 };
-
+/*
 export function createVote(id, mood) {
     return (dispatch, getState) => {
         dispatch(startCreateVote());
@@ -108,9 +108,9 @@ export function createVote(id, mood) {
         });
     };
 };
-
+*/
 /*  Post Form */
-
+/*
 export function input(value) {
     return {
         type: '@POST_FORM/INPUT',
@@ -124,16 +124,42 @@ export function inputDanger(danger) {
         danger
     };
 };
+*/
+export function inputDrink(value) {
+    return {
+        type: '@POST_FORM/INPUT_DRINK',
+        value
+    };
+};
+export function inputSugar(value) {
+    return {
+        type: '@POST_FORM/INPUT_SUGAR',
+        value
+    };
+};
 
+export function inputDangerDrink(danger) {
+    return {
+        type: '@POST_FORM/INPUT_DANGER_DRINK',
+        danger
+    };
+};
+export function inputDangerSugar(danger) {
+    return {
+        type: '@POST_FORM/INPUT_DANGER_SUGAR',
+        danger
+    };
+};
+/*
 export function selectMood(mood) {
     return {
         type: '@POST_FORM/SELECT_MOOD',
         mood
     };
 };
-
+*/
 /*  Post item */
-
+/*
 export function toggleTooltip(id) {
     return {
         type: '@POST_ITEM/TOGGLE_TOOLTIP',
@@ -148,3 +174,4 @@ export function setTooltipToggle(id, toggle) {
         toggle
     };
 };
+*/
