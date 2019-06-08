@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, TouchableWithoutFeedback, Image, Text, Button,TouchableHighlight} from 'react-native';
+import {View, TouchableWithoutFeedback, Image, Text, Button,TouchableHighlight, TextInput} from 'react-native';
 
 import {Container, Icon, Fab, Toast} from 'native-base';
 import appColors from '../styles/colors';
@@ -17,12 +17,18 @@ import {setToast} from '../states/toast';
 
 import AgeGenderWeightTextInput from './AgeGenderWeightTextInput';
 
+import {inputAge, inputWeight, inputGender, inputDanger, createUser, sugarGoal} from '../states/user-actions';
+//import console = require('console');
+
 class TodayScreen extends React.Component {
     static propTypes = {
         creatingPost: PropTypes.bool.isRequired,
         creatingVote: PropTypes.bool.isRequired,
         toast: PropTypes.string.isRequired,
-        dispatch: PropTypes.func.isRequired
+        dispatch: PropTypes.func.isRequired,
+        age: PropTypes.string,
+        weight: PropTypes.string,
+        gender: PropTypes.string
     };
 
     constructor(props) {
@@ -36,6 +42,10 @@ class TodayScreen extends React.Component {
         this.handleFabClose = this.handleFabClose.bind(this);
         this.handleCreatePost = this.handleCreatePost.bind(this);
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
+
+        this.handleInputChange_AGE = this.handleInputChange_AGE.bind(this);
+        this.handleInputChange_WEIGHT = this.handleInputChange_WEIGHT.bind(this);
+        this.handleInputChange_GENDER = this.handleInputChange_GENDER.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -62,20 +72,21 @@ class TodayScreen extends React.Component {
                     
                     
                     <AgeGenderWeightTextInput
+                        getRef={el => {this.inputEl = el}}
                         multiline = {true}
                         numberOfLines = {4}
-                        onChangeText={(text) => this.setState({text})}
-                        //value={this.state.text}
+                        onChangeText={/*(text) => this.setState({text})*/ this.handleInputChange_AGE}
+                        value={this.props.age}
                         style={styles.input1}
                         placeholder={"Your age?"}
-                        placeholderTextColor={'rgb(100, 204, 203)'} 
+                        placeholderTextColor={'rgb(100, 204, 203)'}
                     />
                 
                     <AgeGenderWeightTextInput
                         multiline = {true}
                         numberOfLines = {4}
-                        onChangeText={(text) => this.setState({text})}
-                        //value={this.state.text}
+                        onChangeText={/*(text) => this.setState({text})*/ this.handleInputChange_GENDER}
+                        value={this.props.gender}
                         style={styles.input1}
                         placeholder={"Your gender?"}
                         placeholderTextColor={'rgb(100, 204, 203)'} 
@@ -84,8 +95,8 @@ class TodayScreen extends React.Component {
                     <AgeGenderWeightTextInput
                         multiline = {true}
                         numberOfLines = {4}
-                        onChangeText={(text) => this.setState({text})}
-                        //value={this.state.text}
+                        onChangeText={/*(text) => this.setState({text})*/this.handleInputChange_WEIGHT}
+                        value={this.props.weight}
                         style={styles.input1}
                         placeholder={"Your weight?"}
                         placeholderTextColor={'rgb(100, 204, 203)'} 
@@ -112,7 +123,34 @@ class TodayScreen extends React.Component {
 
     handleSubmitForm(){
         this.setState({testString: 'test_successfully'});
+        //debugger;
+        this.props.dispatch(sugarGoal(this.props.age, this.props.weight));
+        this.props.dispatch(createUser(this.props.age, this.props.weight, this.props.gender, this.props.sugar_should_intake));
         this.props.navigation.navigate('SettingScreen2');
+    }
+
+    handleInputChange_AGE(e) {
+        const age = e
+        this.props.dispatch(inputAge(age));
+        if (age && this.props.inputDanger) {
+            this.props.dispatch(inputDanger(false));
+        }
+    }
+
+    handleInputChange_WEIGHT(e) {
+        const weight = e
+        this.props.dispatch(inputWeight(weight));
+        if (weight && this.props.inputDanger) {
+            this.props.dispatch(inputDanger(false));
+        }
+    }
+
+    handleInputChange_GENDER(e) {
+        const gender = e
+        this.props.dispatch(inputGender(gender));
+        if (gender && this.props.inputDanger) {
+            this.props.dispatch(inputDanger(false));
+        }
     }
 }
 
@@ -181,8 +219,12 @@ const styles = {
     }
 };
 
-export default connect((state, ownProps) => ({
-    creatingPost: state.post.creatingPost,
+export default connect((state/*, ownProps*/) => ({
+    /*creatingPost: state.post.creatingPost,
     creatingVote: state.post.creatingVote,
-    toast: state.toast
+    toast: state.toast,
+    age: state.age,
+    weight: state.weight,
+    gender: state.gender*/
+    ...state.userForm
 }))(TodayScreen);

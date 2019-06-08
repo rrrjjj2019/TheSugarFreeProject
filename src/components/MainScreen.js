@@ -13,6 +13,7 @@ import WeatherDisplay from './WeatherDisplay';
 import {connect} from 'react-redux';
 import {setToast} from '../states/toast';
 
+
 class MainScreen extends React.Component{
     static propTypes = {
         dispatch: PropTypes.func.isRequired
@@ -33,9 +34,15 @@ class MainScreen extends React.Component{
             this.props.dispatch(setToast(''));
         }
     }
+   /* componentDidMount() {
+        console.log(this.props);
+    }*/
+    
 
     render(){
         const {navigate} = this.props.navigation;
+        console.log("In MainScreen");
+        console.log(this.props);
         return (
             <NavigationContainer
                 navigate={navigate}
@@ -53,6 +60,7 @@ class MainScreen extends React.Component{
                             <Text style={{ fontSize: 30 }}>{'today\n 30%'}</Text>
                         </ProgressCircle>
                     </View>
+                    
                     <View style={styles.progessCircle1}>
                         <ProgressCircle
                             percent={80}
@@ -116,5 +124,6 @@ const styles = StyleSheet.create({
 
 
 export default connect((state, ownProps) => ({
-    toast: state.toast
+    toast: state.toast,
+    ...state.user
 }))(MainScreen);

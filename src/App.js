@@ -12,6 +12,7 @@ import {Provider, connect} from 'react-redux';
 import {search} from './states/search';
 import {toast} from './states/toast';
 import {post, postForm, postItem} from './states/post-reducers';
+import {user, userForm} from './states/user-reducers';
 
 import {createStackNavigator, StackNavigator, NavigationActions} from 'react-navigation';
 import {createReactNavigationReduxMiddleware, createReduxContainer, createNavigationReducer} from 'react-navigation-redux-helpers';
@@ -43,7 +44,7 @@ const AppNavigator = createStackNavigator({
 const navReducer = createNavigationReducer(AppNavigator);
 const appReducer = {
     nav: navReducer,
-    search, toast, post, postForm, postItem
+    search, toast, post, postForm, postItem, user, userForm
 };
 
 const navigationMiddleware = createReactNavigationReduxMiddleware(

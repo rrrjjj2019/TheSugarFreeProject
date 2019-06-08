@@ -16,13 +16,15 @@ import {selectMood} from '../states/post-actions';
 import {setToast} from '../states/toast';
 
 import AgeGenderWeightTextInput from './AgeGenderWeightTextInput';
+import {listUsers} from '../states/user-actions';
 
 class SettingScreen2 extends React.Component {
     static propTypes = {
         creatingPost: PropTypes.bool.isRequired,
         creatingVote: PropTypes.bool.isRequired,
         toast: PropTypes.string.isRequired,
-        dispatch: PropTypes.func.isRequired
+        dispatch: PropTypes.func.isRequired,
+        //users: PropTypes.array.isRequired
     };
 
     constructor(props) {
@@ -38,7 +40,15 @@ class SettingScreen2 extends React.Component {
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
     }
 
+    componentDidMount() {
+        
+        this.props.dispatch(listUsers());
+        
+        //var a = this.props.user.users[0].age;
+    }
+
     componentWillReceiveProps(nextProps) {
+        
         if (nextProps.toast) {
             Toast.show({
                 text: nextProps.toast,
@@ -52,17 +62,20 @@ class SettingScreen2 extends React.Component {
 
     render() {
         const {navigate} = this.props.navigation;
+        console.log("sssssssss");
+        console.log(this.props);
         return (
             <View style={styles.inputcontainer}>
                 <View style={styles.title_container}>
                     <Text style = {styles.title}>The</Text>
                     <Text style = {styles.title}>SugarFree</Text>
                     <Text style = {styles.title}>Project</Text>
+                    
                 </View>
                 
                 <View style={styles.recommended_intake_container}>
                     <Text style = {styles.recommended_intake}>Your daily recommended</Text>
-                    <Text style = {styles.recommended_intake}>sugar intake is 50 g</Text>
+                    <Text style = {styles.recommended_intake}>sugar intake is {this.props.sugar_should_intake}g</Text>
                 </View>
                     
 
@@ -169,5 +182,9 @@ const styles = {
 export default connect((state, ownProps) => ({
     creatingPost: state.post.creatingPost,
     creatingVote: state.post.creatingVote,
-    toast: state.toast
+    toast: state.toast,
+    ...state.userForm,
+    ...state.user
+    
+    //...state.userForm
 }))(SettingScreen2);

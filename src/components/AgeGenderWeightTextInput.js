@@ -13,8 +13,8 @@ class AgeGenderWeightTextInput extends Component {
       <TextInput
         {...this.props}
         style={styles.TextInputStyle}
-        onChangeText={(text) => this.setState({text})}
-        //value={this.state.text}
+        onChangeText={/*(text) => this.setState({text})*/ this.props.onChangeText}
+        value={this.props.value}
       />
     );
   }
