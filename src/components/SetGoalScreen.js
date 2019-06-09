@@ -15,6 +15,7 @@ import Category from './GridContent';
 import {connect} from 'react-redux';
 import {selectMood} from '../states/post-actions';
 import {setToast} from '../states/toast';
+import {createGoalIncrease} from '../states/user-actions'
 
 import AgeGenderWeightTextInput from './AgeGenderWeightTextInput';
 import {
@@ -47,6 +48,8 @@ class SetGoalScreen extends React.Component {
         this.handleCreatePost = this.handleCreatePost.bind(this);
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
         this.handleGoBack = this.handleGoBack.bind(this);
+        this.handleIncrease = this.handleIncrease.bind(this);
+        this.handleDecrease = this.handleDecrease.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -63,6 +66,9 @@ class SetGoalScreen extends React.Component {
 
     render() {
         const {navigate} = this.props.navigation;
+        console.log("In SetGoalScreen");
+        console.log(this.props);
+        console.log(this.props[0].sugar_should_intake);
         return (
             
             
@@ -84,7 +90,7 @@ class SetGoalScreen extends React.Component {
                     
                     <View style={styles.chartContainer}>
                         <View style={styles.arrow}>
-                            <TouchableWithoutFeedback  onPress={this.handleGoBack}>
+                            <TouchableWithoutFeedback  onPress={this.handleIncrease}>
                                 <View style={styles.submitButton}>
                                     <Image source={require('../images/arrowUp.png')}
                                         style={{ flex: 2, width: 120, height: 150, resizeMode: 'cover' }}
@@ -93,10 +99,10 @@ class SetGoalScreen extends React.Component {
                             </TouchableWithoutFeedback >
                         </View>
                         <View style={styles.weeklySugarIntake2}>
-                            <Text style={styles.dailySugarIntakeText}>50g/day</Text>
+                            <Text style={styles.dailySugarIntakeText}>{this.props[0].sugar_should_intake}g/day</Text>
                         </View>
                         <View style={styles.arrow}>
-                            <TouchableWithoutFeedback  onPress={this.handleGoBack}>
+                            <TouchableWithoutFeedback  onPress={this.handleDecrease}>
                                 <View style={styles.submitButton}>
                                     <Image source={require('../images/arrowDown.png')}
                                         style={{ flex: 2, width: 120, height: 150, resizeMode: 'cover' }}
@@ -127,6 +133,14 @@ class SetGoalScreen extends React.Component {
 
     handleGoBack(){
         this.props.navigation.navigate('Main');
+    }
+
+    handleIncrease(){
+        this.props.dispatch(createGoalIncrease(this.props.name, this.props[0].sugar_should_intake+5));
+    }
+
+    handleDecrease(){
+        this.props.dispatch(createGoalIncrease(this.props.name, this.props[0].sugar_should_intake-5));
     }
 }
 
@@ -253,5 +267,7 @@ const styles = {
 export default connect((state, ownProps) => ({
     creatingPost: state.post.creatingPost,
     creatingVote: state.post.creatingVote,
-    toast: state.toast
+    toast: state.toast,
+    ...state.userForm,
+    ...state.user.users
 }))(SetGoalScreen);

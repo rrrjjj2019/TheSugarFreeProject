@@ -40,12 +40,12 @@ class SettingScreen2 extends React.Component {
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         
         this.props.dispatch(listUsers());
         
         //var a = this.props.user.users[0].age;
-    }
+    }*/
 
     componentWillReceiveProps(nextProps) {
         

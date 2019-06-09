@@ -1,6 +1,7 @@
 import {
     createUsers as createUserFromApi,
-    listUsers as listUsersFromApi
+    listUsers as listUsersFromApi,
+    createGoalIncrease as createGoalIncreaseFromApi
 } from '../api/posts.js';
 
 /*  Users */
@@ -71,11 +72,11 @@ export function listUsers(/*searchText*/) {
     };
 };*/
 
-export function createUser(age, weight, gender, sugar_should_intake) {
+export function createUser(age, weight, gender, sugar_should_intake, userId) {
     return (dispatch, getState) => {
         dispatch(startCreateUser());
 
-        return createUserFromApi(age, weight, gender, sugar_should_intake).then(user => {
+        return createUserFromApi(age, weight, gender, sugar_should_intake, userId).then(user => {
             console.log("user = ")
             console.log(user);
             dispatch(endCreateUser(user));
@@ -98,6 +99,32 @@ export function createUser(age, weight, gender, sugar_should_intake) {
         });
     };
 };*/
+
+function startCreateGoal_Increase() {
+    return {
+        type: '@USER/START_CREATE_GOAL_INCREASE'
+    };
+}
+
+function endCreateGoal_Increase(user) {
+    return {
+        type: '@USER/END_CREATE_GOAL_INCREASE',
+        user
+    };
+}
+
+export function createGoalIncrease(userId, goal) {
+    return (dispatch, getState) => {
+        dispatch(startCreateGoal_Increase());
+
+        return createGoalIncreaseFromApi(userId, goal).then(user => {
+            dispatch(endCreateGoal_Increase(user));
+        }).catch(err => {
+            dispatch(endCreateGoal_Increase())
+            console.error('Error creating goal', err);
+        });
+    };
+};
 
 /*  User Form */
 

@@ -6,6 +6,7 @@ const initUserState = {
     users: [],
     //hasMore: true,
     creatingUser: false,
+    creatingGoal: false
     //creatingVote: false
 };
 export function user(state = initUserState, action) {
@@ -57,6 +58,27 @@ export function user(state = initUserState, action) {
             return {
                 ...state,
                 creatingUser: false,
+                users: newUsers
+            };
+        case '@USER/START_CREATE_GOAL_INCREASE':
+            return {
+                ...state,
+                creatingGoal: true
+            };
+        case '@USER/END_CREATE_GOAL_INCREASE':
+            if (!action.user)
+                return {
+                    ...state,
+                    creatingGoal: false
+                };
+            var newUsers = state.users.map(u => {
+                if (u.name === action.user.name)//////////////////??name???????????
+                    return action.user;
+                return u;
+            });
+            return {
+                ...state,
+                creatingGoal: false,
                 users: newUsers
             };
         /*case '@POST/START_CREATE_VOTE':

@@ -122,8 +122,37 @@ export function createVote(id, mood) {
     });
 }*/
 
+export function createGoalIncrease(userId = '', goal) {
+    let url = `${postBaseUrl}/setGoal/${userId}`;
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%');
+    console.log(goal);
+    console.log(`Making POST request to: ${url}`);
+    
 
-export function createUsers(age , weight , gender, sugar_should_intake) {
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            goal
+        })
+    }).then(function(res) {
+        console.log('########################');
+        console.log(res);
+        if (res.status !== 200){
+            throw new Error(`Unexpected response code: ${res.status}`);
+            
+        }
+            
+
+        return res.json();
+    });
+}
+
+
+export function createUsers(age , weight , gender, sugar_should_intake, userId) {
     let url = `${postBaseUrl}/users`;
     //sugar_should_intake=666666;
 
@@ -132,7 +161,7 @@ export function createUsers(age , weight , gender, sugar_should_intake) {
     console.log(`weight = ${weight}`);
     console.log(`gender = ${gender}`);
     console.log(`total = ${parseInt(age) + parseInt(weight)}`);
-
+    console.log(`userId = ${userId}`);
     //age = -100;
     sugar_should_intake = parseInt(age) + parseInt(weight);
     return fetch(url, {
@@ -145,7 +174,8 @@ export function createUsers(age , weight , gender, sugar_should_intake) {
             age,
             weight,
             gender,
-            sugar_should_intake
+            sugar_should_intake,
+            userId
         })
     }).then(function(res) {
         if (res.status !== 200)

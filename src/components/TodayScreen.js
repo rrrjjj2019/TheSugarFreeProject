@@ -136,7 +136,7 @@ class TodayScreen extends React.Component {
         this.setState({testString: 'test_successfully'});
         //debugger;
         this.props.dispatch(sugarGoal(this.props.age, this.props.weight));
-        this.props.dispatch(createUser(this.props.age, this.props.weight, this.props.gender, this.props.sugar_should_intake));
+        this.props.dispatch(createUser(this.props.age, this.props.weight, this.props.gender, this.props.sugar_should_intake, this.props.name));
         this.props.navigation.navigate('SettingScreen2');
     }
 
