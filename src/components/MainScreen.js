@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, TouchableWithoutFeedback, Image, Text, StyleSheet} from 'react-native';
+import {View, TouchableWithoutFeedback, Image, Text, StyleSheet, AppState} from 'react-native';
 import ProgressCircle from 'react-native-progress-circle'
 import {Container, Icon, Fab, Button, Toast} from 'native-base';
 import appColors from '../styles/colors';
@@ -12,11 +12,16 @@ import PostItem from './PostItem';
 import WeatherDisplay from './WeatherDisplay';
 import {connect} from 'react-redux';
 import {setToast} from '../states/toast';
-
+import * as Progress from 'react-native-progress';
+import moment from 'moment';
+import {handleTodayHasLogin} from '../states/post-actions';
 
 class MainScreen extends React.Component{
     static propTypes = {
         dispatch: PropTypes.func.isRequired
+    };
+    state = {
+        appState: AppState.currentState,
     };
     constructor(props) {
         super(props);
@@ -37,6 +42,24 @@ class MainScreen extends React.Component{
    /* componentDidMount() {
         console.log(this.props);
     }*/
+    componentDidMount() {
+        AppState.addEventListener('change', this._handleAppStateChange);
+    }
+    
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this._handleAppStateChange);
+    }
+    
+    _handleAppStateChange = (nextAppState) => {
+        if (
+            this.state.appState.match(/inactive|background/) &&
+            nextAppState === 'active'
+        ) {
+            console.log('App has come to the foreground!');
+            this.props.dispatch(handleTodayHasLogin(moment().format('L')));
+        }
+        this.setState({appState: nextAppState});
+    };
     
 
     render(){
@@ -53,7 +76,7 @@ class MainScreen extends React.Component{
                         <View style={styles.progressCircleWarning}>
                             <ProgressCircle
                                 percent={(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}
-                                radius={90}
+                                radius={80}
                                 borderWidth={25}
                                 shadowColor="#eeeeee"
                                 color= "#AE0600"
@@ -61,22 +84,23 @@ class MainScreen extends React.Component{
                                 <Text style={styles.disp}>{(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}%</Text>
                             </ProgressCircle>
                         </View>
-                        
+                        <Text>Current state is: {this.state.appState}</Text>
                         <View style={styles.progressCircle1}>
                             <ProgressCircle
-                                percent={80}
-                                radius={90}
+                                percent={(this.props.streakDay/7).toFixed(1)}
+                                radius={100}
                                 borderWidth={25}
                                 color="#FF7700"
                                 shadowColor="#eeeeee"
                                 bgColor="#fff">
-                                <Text style={styles.disp}>{'streak\n 3 days'}</Text>
+                                <Text style={styles.disp}>{'streak'}</Text>
+                                <Text style={styles.disp}>{this.props.streakDay}/7 days</Text>
                             </ProgressCircle>
                         </View>
                         <View style={styles.progressCircle2}>
                             <ProgressCircle
                                 percent={100}
-                                radius={90}
+                                radius={80}
                                 borderWidth={25}
                                 color="#06AE00"
                                 shadowColor="#eeeeee"
@@ -99,36 +123,37 @@ class MainScreen extends React.Component{
                         <View style={styles.progressCircle0}>
                             <ProgressCircle
                                 percent={(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}
-                                radius={90}
+                                radius={80}
                                 borderWidth={25}
                                 color= "#06AE00"
                                 shadowColor="#eeeeee"
                                 bgColor="#fff">
-                                <Text style={styles.disp}>{(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}%</Text>
+                                <Text style={styles.disp}>{(this.props.todaySum/this.props[0].sugar_should_intake*100).toFixed(1)}%</Text>
                             </ProgressCircle>
                         </View>
-                        
+                        <Text>Current state is: {this.state.appState}</Text>
                         <View style={styles.progressCircle1}>
                             <ProgressCircle
-                                percent={80}
-                                radius={90}
+                                percent={(this.props.streakDay/7).toFixed(1)}
+                                radius={100}
                                 borderWidth={25}
                                 color="#FF7700"
                                 shadowColor="#eeeeee"
                                 bgColor="#fff">
-                                <Text style={styles.disp}>{'streak\n 3 days'}</Text>
+                                <Text style={styles.disp}>{'streak'}</Text>
+                                <Text style={styles.disp}>{this.props.streakDay}/7 days</Text>
                             </ProgressCircle>
                         </View>
                         <View style={styles.progressCircle2}>
                             <ProgressCircle
                                 percent={100}
-                                radius={90}
+                                radius={80}
                                 borderWidth={25}
                                 color="#06AE00"
                                 shadowColor="#eeeeee"
                                 bgColor="#fff">
                                 <Text style={styles.disp}>{'Goal'}</Text>
-                                <Text style={styles.disp}>{this.props.sugar_should_intake}</Text>
+                                <Text style={styles.disp}>{this.props[0].sugar_should_intake}</Text>
                             </ProgressCircle>
                         </View>
                 </NavigationContainer>
@@ -157,7 +182,7 @@ const styles = StyleSheet.create({
     },
     progressCircle1: {
         position: 'absolute',
-        top: 300,
+        top: 280,
         left: 0,
         right: 0,
         justifyContent: 'center',
@@ -191,5 +216,6 @@ export default connect((state, ownProps) => ({
     toast: state.toast,
     //...state.user
     ...state.userForm,
-    ...state.post
+    ...state.post,
+    ...state.user.users
 }))(MainScreen);

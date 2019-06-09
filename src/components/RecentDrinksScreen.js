@@ -69,11 +69,11 @@ class RecentDrinksScreen extends React.Component {
         console.log("In RecentDrink")
         console.log(this.props.posts);
         return (
-            <Container>
-                <Header>
+            <View style={styles.screenContainer}>
+                <Header style={styles.header}>
                     <Left><Button transparent
                         onPress={this.handleGoBack}>
-                        <Icon name='arrow-left' type='FontAwesome'  style={{fontSize: 24}} />
+                        <Icon name='arrow-left' type='FontAwesome'  style={{fontSize: 24, color:'black'}} />
                     </Button></Left>
                     <Body><Title>New Post</Title></Body>
                     <Right></Right>
@@ -98,7 +98,7 @@ class RecentDrinksScreen extends React.Component {
                     ref={(el) => this.listEl = el}
                     {...scrollProps}
                 />
-            </Container>
+            </View>
         );
     }
 
@@ -121,6 +121,39 @@ class RecentDrinksScreen extends React.Component {
             dispatch(listMorePosts(userId, start));
     }
 }
+
+const styles = {
+    content: {
+        backgroundColor: 'white'
+    },
+
+    item: {
+        marginLeft: 16,
+        marginRight: 16,
+        borderRadius: 4,
+        backgroundColor: 'white',
+        borderColor :'white'
+    },
+    input: {
+        height: 100,
+        borderColor: 'rgb(0, 204, 203)',
+        borderWidth: 2,
+        textAlign: 'center',
+        marginVertical: 10,
+        borderRadius:20,
+        width: 220,
+    },
+    screenContainer:{
+        flex:1,
+        justifyContent:'center',
+        borderBottomColor: '#000000',
+        borderBottomWidth: 1,
+        marginTop: 24
+    },
+    header:{
+        backgroundColor: 'white',
+    },
+};
 
 export default connect((state, ownProps) => ({
     //searchText: state.search.searchText,

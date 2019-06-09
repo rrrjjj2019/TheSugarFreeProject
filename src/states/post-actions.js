@@ -104,6 +104,13 @@ export function createPost(/*mood, text*/userId, drinkName, sugar) {
         });
     };
 };
+
+export function handleTodayHasLogin(today){
+    return{
+        type: '@POST/HAS_LOGIN_TODAY',
+        today
+    }
+}
 /*
 export function createVote(id, mood) {
     return (dispatch, getState) => {

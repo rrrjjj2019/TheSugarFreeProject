@@ -1,0 +1,71 @@
+{
+    "identityPoolName": "weathermoodmobileae3bbaf5_identitypool_ae3bbaf5",
+    "allowUnauthenticatedIdentities": false,
+    "lambdaLogPolicy": "weathe_ae3bbaf5_lambda_log_policy",
+    "openIdLambdaRoleName": "weathe_ae3bbaf5_openid_lambda_role",
+    "openIdRolePolicy": "weathe_ae3bbaf5_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "weathe_ae3bbaf5_openid_lambda_iam_policy",
+    "openIdLogPolicy": "weathe_ae3bbaf5_openid_lambda_log_policy",
+    "userPoolName": "weathermoodmobileae3bbaf5_userpool_ae3bbaf5",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "weatheae3bbaf5_sns-role",
+    "roleExternalId": "weatheae3bbaf5_role_external_id",
+    "policyName": "weatheae3bbaf5-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientName": "weatheae3bbaf5_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "weatheae3bbaf5_totp_lambda_role",
+    "mfaLambdaLogPolicy": "weatheae3bbaf5_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "weatheae3bbaf5_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "weatheae3bbaf5_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "weatheae3bbaf5_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "weatheae3bbaf5_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "weatheae3bbaf5_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "resourceName": "weathermoodmobileae3bbaf5",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "default",
+    "usernameAttributes": [
+        "email"
+    ]
+}

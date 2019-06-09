@@ -1,0 +1,19 @@
+{
+    "finalproj": {
+        "awscloudformation": {
+            "AuthRoleName": "weathermoodmobile-finalproj-20190610021407-authRole",
+            "UnauthRoleArn": "arn:aws:iam::512031721132:role/weathermoodmobile-finalproj-20190610021407-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::512031721132:role/weathermoodmobile-finalproj-20190610021407-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "weathermoodmobile-finalproj-20190610021407-deployment",
+            "UnauthRoleName": "weathermoodmobile-finalproj-20190610021407-unauthRole",
+            "StackName": "weathermoodmobile-finalproj-20190610021407",
+            "StackId": "arn:aws:cloudformation:us-west-2:512031721132:stack/weathermoodmobile-finalproj-20190610021407/616b6160-8ae2-11e9-b049-02cb67b6aa16"
+        },
+        "categories": {
+            "auth": {
+                "weathermoodmobileae3bbaf5": {}
+            }
+        }
+    }
+}

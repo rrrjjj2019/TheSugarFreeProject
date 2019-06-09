@@ -1,0 +1,17 @@
+{
+    "projectName": "WeatherMoodMobile",
+    "version": "2.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react-native",
+        "config": {
+            "SourceDir": "src",
+            "DistributionDir": "android",
+            "BuildCommand": "npm.cmd run-script build",
+            "StartCommand": "npm run-script build"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
+}

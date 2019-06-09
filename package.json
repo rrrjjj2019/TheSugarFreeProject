@@ -17,6 +17,7 @@
     "react-native-directed-scrollview": "^2.0.0",
     "react-native-gesture-handler": "^1.2.1",
     "react-native-infinite-scroll-view": "^0.4.5",
+    "react-native-progress": "^3.6.0",
     "react-native-progress-circle": "^2.0.1",
     "react-native-screens": "1.0.0-alpha.22",
     "react-native-svg": "^9.4.0",

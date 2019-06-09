@@ -35,8 +35,8 @@ class PostItem extends React.Component {
                     
                     <View style={styles.wrap}>
                         <Text style={styles.ts}>{moment(ts * 1000).calendar()}</Text>
-                        <Text style={styles.text}>{this.props.drinkName}</Text>
-                        <Text style={styles.text}>{this.props.sugar}</Text> 
+                        <Text style={styles.text}>drink: {this.props.drinkName}</Text>
+                        <Text style={styles.text}>sugar: {this.props.sugar}g</Text> 
                     </View>
                 </View>
             </ListItem>
@@ -59,7 +59,13 @@ const styles = StyleSheet.create({
     },
     post: {
         flexDirection: 'row',
-        alignItems: 'flex-start'
+        alignSelf: 'center',
+        alignItems: 'center',
+        backgroundColor : 'white',
+        marginLeft : 20,
+        borderColor: 'rgb(0, 204, 203)',
+        borderWidth: 5,
+        borderRadius:20,
     },
     mood: {
         width: 48,
@@ -73,14 +79,18 @@ const styles = StyleSheet.create({
         flex: 1
     },
     ts: {
-        color: appColors.textLight
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 23,
+        fontWeight: "600"
     },
     text: {
         fontSize: 17,
         fontFamily: (Platform.OS === 'ios') ? 'System' : 'Roboto',
         color: appColors.text,
         marginTop: 4,
-        marginBottom: 4
+        marginBottom: 4,
+        textAlign: 'center',
     }
 });
 

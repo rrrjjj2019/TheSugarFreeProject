@@ -9,7 +9,8 @@ const initPostState = {
     hasMore: true,
     creatingPost: false,
     todaySum: 0,
-    today: ''
+    today: '',
+    streakDay: 0
     //creatingVote: false
 };
 export function post(state = initPostState, action) {
@@ -95,6 +96,19 @@ export function post(state = initPostState, action) {
             return{
                 ...state,
                 todaySum: tempSum
+            }
+        case 'POST/HAS_LOGIN_TODAY':
+            var tempTodaySum = state.todaySum;
+            var tempStreakDay = 0;
+            if((state.today != action.today) && todaySum == 0){
+                tempStreakDay = state.streakDay++;
+                tempTodaySum = 0;
+            }
+            return{
+                ...state,
+                todaySum: tempTodaySum,
+                today: action.today,
+                streakDay: tempStreakDay
             }
         default:
             return state;

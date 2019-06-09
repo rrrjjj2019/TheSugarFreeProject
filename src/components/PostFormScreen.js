@@ -40,15 +40,15 @@ class PostFormScreen extends React.Component {
         //const {inputValue, inputDanger} = this.props;
         const {inputDrink, inputSugar, inputDangerDrink, inputDangerSugar} = this.props;
         return (
-            <Container>
-                <Header>
+            <View style={styles.screenContainer}>
+                <Header style={styles.header}>
                     <Left><Button transparent
                         onPress={this.handleGoBack}>
-                        <Icon name='arrow-left' type='FontAwesome'  style={{fontSize: 24}} />
+                        <Icon name='arrow-left' type='FontAwesome'  style={{fontSize: 24, color:'black'}} />
                     </Button></Left>
                     <Body><Title>New Post</Title></Body>
                     <Right><Button transparent onPress={this.handleCreatPost}>
-                        <Icon name='check' type='FontAwesome' style={{fontSize: 24}} />
+                        <Icon name='check' type='FontAwesome' style={{fontSize: 24, color:'black'}} />
                     </Button></Right>
                 </Header>
                 <Content style={styles.content}>
@@ -66,7 +66,7 @@ class PostFormScreen extends React.Component {
                             onChange={this.handleInputSugarChange} />
                     </Item>
                 </Content>
-            </Container>
+            </View>
         );
     }
 //this is in <Content></content>
@@ -124,18 +124,35 @@ class PostFormScreen extends React.Component {
 
 const styles = {
     content: {
-        backgroundColor: appColors.primaryLight
+        backgroundColor: 'white'
     },
 
     item: {
         marginLeft: 16,
         marginRight: 16,
         borderRadius: 4,
-        backgroundColor: '#fff'
+        backgroundColor: 'white',
+        borderColor :'white'
     },
     input: {
-        height: 100
-    }
+        height: 100,
+        borderColor: 'rgb(0, 204, 203)',
+        borderWidth: 2,
+        textAlign: 'center',
+        marginVertical: 10,
+        borderRadius:20,
+        width: 220,
+    },
+    screenContainer:{
+        flex:1,
+        justifyContent:'center',
+        borderBottomColor: '#000000',
+        borderBottomWidth: 1,
+        marginTop: 24
+    },
+    header:{
+        backgroundColor: 'white',
+    },
 };
 
 export default connect(state => ({

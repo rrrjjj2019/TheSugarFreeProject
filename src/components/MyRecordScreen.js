@@ -16,6 +16,7 @@ import {connect} from 'react-redux';
 import {selectMood} from '../states/post-actions';
 import {setToast} from '../states/toast';
 
+
 import AgeGenderWeightTextInput from './AgeGenderWeightTextInput';
 import {
     LineChart,
@@ -410,7 +411,7 @@ const styles = {
         height:40,
         justifyContent:'center',
         alignSelf: 'center',
-        marginTop: -60,
+        marginTop: -30,
         marginBottom:20
     },
     weeklySugarIntake2:{
