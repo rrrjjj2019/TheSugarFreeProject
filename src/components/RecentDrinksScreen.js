@@ -66,6 +66,8 @@ class RecentDrinksScreen extends React.Component {
 
     render() {
         const {listingPosts, hasMorePosts, posts, scrollProps} = this.props;
+        console.log("In RecentDrink")
+        console.log(this.props.posts);
         return (
             <Container>
                 <Header>

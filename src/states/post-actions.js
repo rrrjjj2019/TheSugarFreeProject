@@ -3,6 +3,7 @@ import {
     createPost as createPostFromApi,
     createVote as createVoteFromApi
 } from '../api/posts.js';
+import { ActionSheet } from 'native-base';
 
 /*  Posts */
 
@@ -43,6 +44,12 @@ function endCreatePost(post) {
     return {
         type: '@POST/END_CREATE_POST',
         post
+    };
+}
+
+function endCreatePostUpdateTodaySum(){
+    return {
+        type: '@POST/END_CREATE_POST_UPDATE_TODAYSUM'
     };
 }
 /*
@@ -89,8 +96,10 @@ export function createPost(/*mood, text*/userId, drinkName, sugar) {
 
         return createPostFromApi(/*mood, text*/userId, drinkName, sugar).then(post => {
             dispatch(endCreatePost(post));
+            dispatch(endCreatePostUpdateTodaySum());
         }).catch(err => {
-            dispatch(endCreatePost())
+            dispatch(endCreatePost());
+            dispatch(endCreatePostUpdateTodaySum());
             console.error('Error creating post', err);
         });
     };

@@ -43,49 +43,99 @@ class MainScreen extends React.Component{
         const {navigate} = this.props.navigation;
         console.log("In MainScreen");
         console.log(this.props);
-        return (
-            <NavigationContainer
-                navigate={navigate}
-                title="SugerFreeProject"
-                titleLeft={80}
-                titleTop={40}>
-                    <View style={styles.progessCircle0}>
-                        <ProgressCircle
-                            percent={30}
-                            radius={90}
-                            borderWidth={15}
-                            color="#3399FF"
-                            shadowColor="#999"
-                            bgColor="#fff">
-                            <Text style={{ fontSize: 30 }}>{'today\n 30%'}</Text>
-                        </ProgressCircle>
-                    </View>
-                    
-                    <View style={styles.progessCircle1}>
-                        <ProgressCircle
-                            percent={80}
-                            radius={90}
-                            borderWidth={15}
-                            color="#FF7700"
-                            shadowColor="#999"
-                            bgColor="#fff">
-                            <Text style={{ fontSize: 30 }}>{'streak\n 3 days'}</Text>
-                        </ProgressCircle>
-                    </View>
-                    <View style={styles.progessCircle2}>
-                        <ProgressCircle
-                            percent={100}
-                            radius={90}
-                            borderWidth={15}
-                            color="#06AE00"
-                            shadowColor="#999"
-                            bgColor="#fff">
-                            <Text style={{ fontSize: 28 }}>{'Goal\n 50g/daily'}</Text>
-                        </ProgressCircle>
-                    </View>
-            </NavigationContainer>
-
-        );
+        if((this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1) > 100){
+            return (
+                <NavigationContainer
+                    navigate={navigate}
+                    title="SugerFreeProject"
+                    titleLeft={80}
+                    titleTop={40}>
+                        <View style={styles.progressCircleWarning}>
+                            <ProgressCircle
+                                percent={(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}
+                                radius={90}
+                                borderWidth={25}
+                                shadowColor="#eeeeee"
+                                color= "#AE0600"
+                                bgColor="#fff">
+                                <Text style={styles.disp}>{(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}%</Text>
+                            </ProgressCircle>
+                        </View>
+                        
+                        <View style={styles.progressCircle1}>
+                            <ProgressCircle
+                                percent={80}
+                                radius={90}
+                                borderWidth={25}
+                                color="#FF7700"
+                                shadowColor="#eeeeee"
+                                bgColor="#fff">
+                                <Text style={styles.disp}>{'streak\n 3 days'}</Text>
+                            </ProgressCircle>
+                        </View>
+                        <View style={styles.progressCircle2}>
+                            <ProgressCircle
+                                percent={100}
+                                radius={90}
+                                borderWidth={25}
+                                color="#06AE00"
+                                shadowColor="#eeeeee"
+                                bgColor="#fff">
+                                <Text style={styles.disp}>{'Goal'}</Text>
+                                <Text style={styles.disp}>{this.props.sugar_should_intake}</Text>
+                            </ProgressCircle>
+                        </View>
+                </NavigationContainer>
+    
+            );
+        }
+        else{
+            return (
+                <NavigationContainer
+                    navigate={navigate}
+                    title="SugerFreeProject"
+                    titleLeft={80}
+                    titleTop={40}>
+                        <View style={styles.progressCircle0}>
+                            <ProgressCircle
+                                percent={(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}
+                                radius={90}
+                                borderWidth={25}
+                                color= "#06AE00"
+                                shadowColor="#eeeeee"
+                                bgColor="#fff">
+                                <Text style={styles.disp}>{(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}%</Text>
+                            </ProgressCircle>
+                        </View>
+                        
+                        <View style={styles.progressCircle1}>
+                            <ProgressCircle
+                                percent={80}
+                                radius={90}
+                                borderWidth={25}
+                                color="#FF7700"
+                                shadowColor="#eeeeee"
+                                bgColor="#fff">
+                                <Text style={styles.disp}>{'streak\n 3 days'}</Text>
+                            </ProgressCircle>
+                        </View>
+                        <View style={styles.progressCircle2}>
+                            <ProgressCircle
+                                percent={100}
+                                radius={90}
+                                borderWidth={25}
+                                color="#06AE00"
+                                shadowColor="#eeeeee"
+                                bgColor="#fff">
+                                <Text style={styles.disp}>{'Goal'}</Text>
+                                <Text style={styles.disp}>{this.props.sugar_should_intake}</Text>
+                            </ProgressCircle>
+                        </View>
+                </NavigationContainer>
+    
+            );
+        }
+        
     }
 
     handleIntake(){
@@ -96,15 +146,16 @@ class MainScreen extends React.Component{
 
 const styles = StyleSheet.create({
 
-    progessCircle0: {
+    progressCircle0: {
         position: 'absolute',
         top: 100,
         left: 0,
         right: 0,
+        //color: "#06AE00",
         justifyContent: 'center',
         alignItems: 'center'
     },
-    progessCircle1: {
+    progressCircle1: {
         position: 'absolute',
         top: 300,
         left: 0,
@@ -112,9 +163,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    progessCircle2: {
+    progressCircle2: {
         position: 'absolute',
         top: 500,
+        left: 0,
+        right: 0,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    disp: {
+        fontWeight: '900',
+        fontSize: 30
+    },
+    progressCircleWarning: {
+        //color: "#AE0600",
+        position: 'absolute',
+        top: 100,
         left: 0,
         right: 0,
         justifyContent: 'center',
@@ -125,5 +189,7 @@ const styles = StyleSheet.create({
 
 export default connect((state, ownProps) => ({
     toast: state.toast,
-    ...state.user
+    //...state.user
+    ...state.userForm,
+    ...state.post
 }))(MainScreen);

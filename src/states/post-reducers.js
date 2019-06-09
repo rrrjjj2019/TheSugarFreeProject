@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 /* Posts */
 
 const initPostState = {
@@ -6,6 +8,8 @@ const initPostState = {
     posts: [],
     hasMore: true,
     creatingPost: false,
+    todaySum: 0,
+    today: ''
     //creatingVote: false
 };
 export function post(state = initPostState, action) {
@@ -44,7 +48,9 @@ export function post(state = initPostState, action) {
         case '@POST/START_CREATE_POST':
             return {
                 ...state,
-                creatingPost: true
+                creatingPost: true,
+                today: moment().format('L'),
+                todaySum: 0
             };
         case '@POST/END_CREATE_POST':
             if (!action.post)
@@ -80,6 +86,16 @@ export function post(state = initPostState, action) {
                 creatingVote: false,
                 posts: newPosts
             };*/
+        case '@POST/END_CREATE_POST_UPDATE_TODAYSUM':
+            var i, tempSum = 0;
+            for(i = 0; i < state.posts.length; i++){
+                if(moment((state.posts[i].ts)*1000).format('L') == state.today)
+                    tempSum += parseInt(state.posts[i].sugar);
+            }
+            return{
+                ...state,
+                todaySum: tempSum
+            }
         default:
             return state;
     }
