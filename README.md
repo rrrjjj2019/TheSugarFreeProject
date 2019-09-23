@@ -7,12 +7,6 @@
   <br>
 </h1>
 
-<div align="center">
-
-[![Travis badge](https://travis-ci.org/salomonelli/best-resume-ever.svg?branch=master)](https://travis-ci.org/salomonelli/best-resume-ever)
-
-</div>
-
 <h4 align="center">
   這是一個幫助糖分成癮患者逐日減少糖分攝取，控制健康的APP
   <br><br>
