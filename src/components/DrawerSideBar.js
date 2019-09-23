@@ -12,10 +12,13 @@ export default class DrawerSideBar extends React.Component {
 
     render() {
       const {navigate} = this.props;
+      console.log("~~~~~~~~~~~In Drawer~~~~~~~~~~");
+      console.log(this.props);
       return (
         <Container style={styles.drawer}>
             <ImageBackground source={require('../images/account-bg.jpg')} style={styles.header}>
                 <Thumbnail large source={require('../images/account.jpg')} />
+                <Text>{this.props.name}</Text>
             </ImageBackground>
             <Button block transparent style={styles.item} onPress={() => navigate('')}>
                 <Icon name='calendar-today' type='MaterialCommunityIcons' style={styles.icon} />

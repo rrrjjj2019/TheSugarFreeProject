@@ -30,9 +30,9 @@ import {
 
 class SetGoalScreen extends React.Component {
     static propTypes = {
-        creatingPost: PropTypes.bool.isRequired,
-        creatingVote: PropTypes.bool.isRequired,
-        toast: PropTypes.string.isRequired,
+        creatingPost: PropTypes.bool,
+        creatingVote: PropTypes.bool,
+        toast: PropTypes.string,
         dispatch: PropTypes.func.isRequired
     };
 

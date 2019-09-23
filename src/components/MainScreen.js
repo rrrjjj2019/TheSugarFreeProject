@@ -66,22 +66,23 @@ class MainScreen extends React.Component{
         const {navigate} = this.props.navigation;
         console.log("In MainScreen");
         console.log(this.props);
-        if((this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1) > 100){
+        if((this.props.todaySum/this.props[0].sugar_should_intake*100).toFixed(1) > 100){
             return (
                 <NavigationContainer
                     navigate={navigate}
+                    name={this.props.name}
                     title="SugerFreeProject"
                     titleLeft={80}
                     titleTop={40}>
                         <View style={styles.progressCircleWarning}>
                             <ProgressCircle
-                                percent={(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}
+                                percent={(this.props.todaySum/this.props[0].sugar_should_intake*100).toFixed(1)}
                                 radius={80}
                                 borderWidth={25}
                                 shadowColor="#eeeeee"
                                 color= "#AE0600"
                                 bgColor="#fff">
-                                <Text style={styles.disp}>{(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}%</Text>
+                                <Text style={styles.disp}>{(this.props.todaySum/this.props[0].sugar_should_intake*100).toFixed(1)}%</Text>
                             </ProgressCircle>
                         </View>
                         <Text>Current state is: {this.state.appState}</Text>
@@ -106,7 +107,7 @@ class MainScreen extends React.Component{
                                 shadowColor="#eeeeee"
                                 bgColor="#fff">
                                 <Text style={styles.disp}>{'Goal'}</Text>
-                                <Text style={styles.disp}>{this.props.sugar_should_intake}</Text>
+                                <Text style={styles.disp}>{this.props[0].sugar_should_intake}</Text>
                             </ProgressCircle>
                         </View>
                 </NavigationContainer>
@@ -117,12 +118,13 @@ class MainScreen extends React.Component{
             return (
                 <NavigationContainer
                     navigate={navigate}
+                    name={this.props.name}
                     title="SugerFreeProject"
                     titleLeft={80}
                     titleTop={40}>
                         <View style={styles.progressCircle0}>
                             <ProgressCircle
-                                percent={(this.props.todaySum/this.props.sugar_should_intake*100).toFixed(1)}
+                                percent={(this.props.todaySum/this.props[0].sugar_should_intake*100).toFixed(1)}
                                 radius={80}
                                 borderWidth={25}
                                 color= "#06AE00"

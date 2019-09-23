@@ -9,7 +9,7 @@ import DrawerSideBar from './DrawerSideBar';
 export default class NavigationContainer extends React.Component {
     static propTypes = {
         navigate: PropTypes.func.isRequired,
-        title: PropTypes.string.isRequired
+        title: PropTypes.string
     };
 
     constructor(props) {
@@ -26,7 +26,7 @@ export default class NavigationContainer extends React.Component {
             <Drawer
 
                 ref={(el) => this.drawer = el}
-                content={<DrawerSideBar navigate={navigate} />}
+                content={<DrawerSideBar navigate={navigate} name={this.props.name}/>}
                 onClose={this.closeDrawer}
                 tweenHandler={(ratio) => ({
                     mainOverlay: {

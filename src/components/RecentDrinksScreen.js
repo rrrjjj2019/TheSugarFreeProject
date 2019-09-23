@@ -16,15 +16,15 @@ import {Container, Header, Left, Right, Button, Title, Icon, Body} from 'native-
 class RecentDrinksScreen extends React.Component {
     static propTypes = {
 
-        //searchText: PropTypes.string.isRequired,
-        userId: PropTypes.string.isRequired,
-        listingPosts: PropTypes.bool.isRequired,
+        //searchText: PropTypes.string,
+        userId: PropTypes.string,
+        listingPosts: PropTypes.bool,
         listingMorePosts: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number
         ]),
-        posts: PropTypes.array.isRequired,
-        hasMorePosts: PropTypes.bool.isRequired,
+        posts: PropTypes.array,
+        hasMorePosts: PropTypes.bool,
         dispatch: PropTypes.func.isRequired,
         scrollProps: PropTypes.object,
 

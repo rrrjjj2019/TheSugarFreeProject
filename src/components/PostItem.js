@@ -14,11 +14,11 @@ import appMetrics from '../styles/metrics';
 
 class PostItem extends React.Component {
     static propTypes = {
-        id: PropTypes.number.isRequired,
+        id: PropTypes.number,
 
-        //text: PropTypes.string.isRequired,
+        //text: PropTypes.string,
         dispatch: PropTypes.func.isRequired,
-        posts: PropTypes.array.isRequired,
+        posts: PropTypes.array,
     };
 
     constructor(props) {

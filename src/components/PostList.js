@@ -13,14 +13,14 @@ import {listPosts, listMorePosts} from '../states/post-actions';
 
 class PostList extends React.Component {
     static propTypes = {
-        searchText: PropTypes.string.isRequired,
-        listingPosts: PropTypes.bool.isRequired,
+        searchText: PropTypes.string,
+        listingPosts: PropTypes.bool,
         listingMorePosts: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number
         ]),
-        posts: PropTypes.array.isRequired,
-        hasMorePosts: PropTypes.bool.isRequired,
+        posts: PropTypes.array,
+        hasMorePosts: PropTypes.bool,
         dispatch: PropTypes.func.isRequired,
         scrollProps: PropTypes.object
     };

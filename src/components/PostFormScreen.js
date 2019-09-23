@@ -18,12 +18,12 @@ class PostFormScreen extends React.Component {
     static propTypes = {
         navigation: PropTypes.object.isRequired,
 
-        //inputValue: PropTypes.string.isRequired,
-        //inputDanger: PropTypes.bool.isRequired
-        inputDrink: PropTypes.string.isRequired,
-        inputSugar: PropTypes.string.isRequired,
-        inputDangerDrink: PropTypes.bool.isRequired,
-        inputDangerSugar: PropTypes.bool.isRequired
+        //inputValue: PropTypes.string,
+        //inputDanger: PropTypes.bool
+        inputDrink: PropTypes.string,
+        inputSugar: PropTypes.string,
+        inputDangerDrink: PropTypes.bool,
+        inputDangerSugar: PropTypes.bool
     };
 
     constructor(props) {

@@ -12,11 +12,11 @@ import appMetrics from '../styles/metrics';
 export default class ParallaxNavigationContainer extends React.Component {
     static propTypes = {
         navigate: PropTypes.func.isRequired,
-        title: PropTypes.string.isRequired,
-        titleLeft: PropTypes.number.isRequired,
-        titleTop: PropTypes.number.isRequired,
-        renderHeaderContent: PropTypes.func.isRequired,
-        renderScroller: PropTypes.func.isRequired
+        title: PropTypes.string,
+        titleLeft: PropTypes.number,
+        titleTop: PropTypes.number,
+        renderHeaderContent: PropTypes.func,
+        renderScroller: PropTypes.func
     };
 
     constructor(props) {

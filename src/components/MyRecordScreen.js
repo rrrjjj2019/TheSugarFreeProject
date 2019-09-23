@@ -33,11 +33,11 @@ const moment = require('moment');
 
 class MyRecordScreen extends React.Component {
     static propTypes = {
-        creatingPost: PropTypes.bool.isRequired,
-        creatingVote: PropTypes.bool.isRequired,
-        toast: PropTypes.string.isRequired,
-        dispatch: PropTypes.func.isRequired,
-        posts: PropTypes.array.isRequired,
+        creatingPost: PropTypes.bool,
+        creatingVote: PropTypes.bool,
+        toast: PropTypes.string,
+        dispatch: PropTypes.func,
+        posts: PropTypes.array,
     };
 
     constructor(props) {
@@ -126,36 +126,39 @@ class MyRecordScreen extends React.Component {
                     </Header>
                     
                     <View style={styles.chartContainer}>
-                        <View style={styles.weeklySugarIntake1}>
-                            <Text style={styles.weeklySugarIntakeText}>This week: {this.sumSevenDay()}g</Text>
-                        </View>
-                        <View style={styles.weeklySugarIntake2}>
-                            <Text style={styles.weeklySugarIntakeText}>last week: 0g</Text>
-                        </View>
                         
-                        <LineChart
-                            data={{
-                                labels: [`${moment().subtract(6, 'days').format('dddd')}`, `${moment().subtract(5, 'days').format('dddd')}`, `${moment().subtract(4, 'days').format('dddd')}`, `${moment().subtract(3, 'days').format('dddd')}`, `${moment().subtract(2, 'days').format('dddd')}`, `${moment().subtract(1, 'days').format('dddd')}`, `${moment().format('dddd')}` ],
-                                datasets: [{
-                                data: [ this.sevenDaySugar[6], this.sevenDaySugar[5], this.sevenDaySugar[4], this.sevenDaySugar[3], this.sevenDaySugar[2], this.sevenDaySugar[1], this.sevenDaySugar[0] ],
-                                color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})` ,// optional
-                                strokeWidth: 2 // optional
-                                }]
-                            }}
-                            width={Dimensions.get('window').width}
-                            height={220}
-                            chartConfig={{
-                            backgroundGradientFrom: '#1E2923',
-                            backgroundGradientTo: '#08130D',
-                            color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-                            strokeWidth: 2}} // optional, default 3}
-                        />
-
+                            <View style={styles.weeklySugarIntake1}>
+                                <Text style={styles.weeklySugarIntakeText}>This week: {this.sumSevenDay()}g</Text>
+                            </View>
+                            <View style={styles.weeklySugarIntake2}>
+                                <Text style={styles.weeklySugarIntakeText}>last week: 0g</Text>
+                            </View>
+                        
+                        
+                        
+                            <LineChart
+                                data={{
+                                    labels: [`${moment().subtract(6, 'days').format('dddd')}`, `${moment().subtract(5, 'days').format('dddd')}`, `${moment().subtract(4, 'days').format('dddd')}`, `${moment().subtract(3, 'days').format('dddd')}`, `${moment().subtract(2, 'days').format('dddd')}`, `${moment().subtract(1, 'days').format('dddd')}`, `${moment().format('dddd')}` ],
+                                    datasets: [{
+                                    data: [ this.sevenDaySugar[6], this.sevenDaySugar[5], this.sevenDaySugar[4], this.sevenDaySugar[3], this.sevenDaySugar[2], this.sevenDaySugar[1], this.sevenDaySugar[0] ],
+                                    color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})` ,// optional
+                                    strokeWidth: 2 // optional
+                                    }]
+                                }}
+                                width={Dimensions.get('window').width}
+                                height={220}
+                                chartConfig={{
+                                backgroundGradientFrom: '#1E2923',
+                                backgroundGradientTo: '#08130D',
+                                color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+                                strokeWidth: 2}} // optional, default 3}
+                            />
+                        
                     </View>
 
                     
 
-                    <View style={{ height: 130, marginTop: -120 }}>
+                    <View style={{ height: 130, marginTop: -120}}>
                         <ScrollView
                             horizontal={true}
                             showsHorizontalScrollIndicator={true}
@@ -401,7 +404,6 @@ const styles = {
         color: 'black'
     },
     chartContainer:{
-        flex:1,
         justifyContent:'center'
     },
     weeklySugarIntake1:{

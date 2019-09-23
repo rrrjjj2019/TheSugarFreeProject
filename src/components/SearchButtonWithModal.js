@@ -10,8 +10,8 @@ import appColors from '../styles/colors';
 
 class SearchButtonWithModal extends React.Component {
     static propTypes = {
-        searchText: PropTypes.string.isRequired,
-        modalToggle: PropTypes.bool.isRequired,
+        searchText: PropTypes.string,
+        modalToggle: PropTypes.bool,
         style: PropTypes.object,
         dispatch: PropTypes.func.isRequired
     };
