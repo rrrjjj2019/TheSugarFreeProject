@@ -1,8 +1,8 @@
 <h1 align="center">
   <br>
-  <img src="src/assets/logo2.png" alt="Markdownify" width="200">
-  <br>
   TheSugarFreeProject
+  <br>
+  <img src="src/assets/logo2.png" alt="Markdownify" width="200">
   <br>
 </h1>
 
