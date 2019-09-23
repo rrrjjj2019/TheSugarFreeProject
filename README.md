@@ -16,8 +16,8 @@
 <br>
 <br>
 
-<p align="left">
-<img src="https://github.com/rrrjjj2019/TheSugarFreeProject/blob/master/screen_shot.gif" width="150" style="margin-right:5px; border: 1px solid #ccc;" />
+<p align="center">
+<img src="https://github.com/rrrjjj2019/TheSugarFreeProject/blob/master/screen_shot.gif" width="280" style="margin-right:5px; border: 1px solid #ccc;" />
 </p>
 
 <br>
