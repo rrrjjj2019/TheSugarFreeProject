@@ -2,6 +2,7 @@
   <br>
   TheSugarFreeProject
   <br>
+  <br>
   <img src="src/assets/logo2.png" alt="Markdownify" width="200">
   <br>
 </h1>
